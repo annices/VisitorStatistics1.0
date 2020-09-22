@@ -1,0 +1,31 @@
+﻿@model VisitorStatistics.Models.Statistics
+
+
+<h1>
+    <i class="fa fa-chart-bar"></i> Statistics
+</h1>
+
+<div id="container">
+    <table style="border: 0 !important">
+        <tr>
+            <td style="width: 180px; border-top: 1px solid #cecece" class="td_bg_light"><b>Visits today:</b></td>
+            <td class="td_bg_dark">@Model.VisitsToday</td>
+        </tr>
+        <tr>
+            <td class="td_bg_light"><b>Visits this week:</b></td>
+            <td class="td_bg_dark">@Model.VisitsThisWeek</td>
+        </tr>
+        <tr>
+            <td class="td_bg_light"><b>Visits this month:</b></td>
+            <td class="td_bg_dark">@Model.VisitsThisMonth</td>
+        </tr>
+        <tr>
+            <td class="td_bg_light"><b>Visits this year:</b></td>
+            <td class="td_bg_dark">@Model.VisitsThisYear</td>
+        </tr>
+        <tr>
+            <td style="width: 180px; border-bottom: 1px solid #cecece" class="td_bg_light"><b>Total visits:</b></td>
+            <td class="td_bg_dark">@Model.TotalVisits</td>
+        </tr>
+    </table>
+</div>

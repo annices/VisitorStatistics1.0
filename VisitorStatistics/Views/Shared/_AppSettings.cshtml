@@ -1,0 +1,69 @@
+﻿@model VisitorStatistics.Models.Config
+
+<div class="panel" id="panel-two">
+    <h2><i class="fas fa-globe"></i> Application settings</h2>
+    <p />
+    <div class="form">
+        <form method="post" asp-action="AppSettings" asp-controller="Admin">
+            <div class="successmsg" id="appFeedbackBox">
+                <span id="appFeedback"></span>
+            </div>
+            <input asp-for="AppID" type="hidden" value="@Model.AppID" id="appID" />
+            <div class="row">
+                <div class="col-25">
+                    <b><label asp-for="ApplicationName"></label> <span class="red">*</span></b>
+                </div>
+                <div class="col-75">
+                    <input type="text" asp-for="ApplicationName" value="@Model.ApplicationName" onblur="removeRedIfVal(this.id)" onfocus="this.placeholder=''" id="appName" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <b><label asp-for="ApplicationURL"></label></b>
+                    <div class="tooltip">
+                        <i class="fas fa-info-circle" style="font-size: 16px"></i>
+                        <span class="tooltiptext">Add URLs in which visits will be registered for the application.</span>
+                    </div>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="url" placeholder="https://" onblur="removeRedIfVal(this.id)" onfocus="this.placeholder=''" />
+                    <p style="margin-bottom: 7px" />
+
+                    <i class="fa fa-plus-square"></i> <a href="#" class="add-url" style="font-weight: bold" title="Add URL.">Add</a>
+                    <div class="url-feedback"></div>
+                    <table style="margin-top: 5px; margin-bottom: 5px; width: 100%" id="urlTable">
+                        <thead>
+                            <tr>
+                                <th style="padding: 8px; padding-left: 15px" colspan="3">
+                                    <input type="checkbox" id="select-all-urls" onclick='multiSelect(this.getAttribute("id"), "input[name=\"urlRecord\"]")' />
+                                    <span style="padding-left: 20px; font-weight: bold">Registered URLs</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="urlBody">
+                            @foreach (string item in Model.UrlList)
+                            {
+                                <tr class="tr-row">
+                                    <td style="width: 10px; padding-left: 15px" class="url-and-ip-rows">
+                                        <input type="checkbox" name="urlRecord" />
+                                    </td>
+                                    <td class="url-and-ip-rows">
+                                        <input type="text" class="plaintext" value="@item" name="ApplicationURL" disabled /><br />
+                                    </td>
+                                    <td style="text-align: right">
+                                        <a href="#" onclick="focusElement($(this).closest('tr').find('input.plaintext').attr('id'))" style="font-weight: bold; color: #000" title="Edit URL."><i class="fa fa-edit"></i></a>
+                                        &nbsp;
+                                        <a href="#" onclick="$(this).closest('tr').remove()" style="font-weight: bold; color: #000" title="Remove URL."><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <i class="fa fa-minus-square"></i> <a href="#" class="delete-row" style="font-weight: bold" title="Remove selected URL(s).">Remove</a>
+                </div>
+            </div>
+            <input type="button" class="btn-a" value="Save changes" id="appForm" />
+        </form>
+    </div>
+</div>

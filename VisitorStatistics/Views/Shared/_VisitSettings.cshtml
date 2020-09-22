@@ -1,0 +1,73 @@
+﻿@model VisitorStatistics.Models.Config
+
+<div class="panel" id="panel-three">
+    <h2><i class="fas fa-eye"></i> Visit settings</h2>
+    <p />
+    <div class="form">
+        <form method="post" asp-action="VisitSettings" asp-controller="Admin">
+            <div class="successmsg" id="visitFeedbackBox">
+                <span id="visitFeedback"></span>
+            </div>
+            <input asp-for="AppID" type="hidden" value="@Model.AppID" id="applID" />
+            <div class="row">
+                <div class="col-25">
+                    <b><label asp-for="IPAddress"></label></b>
+                    <div class="tooltip">
+                        <i class="fas fa-info-circle" style="font-size: 16px"></i>
+                        <span class="tooltiptext">
+                            Add IP addresses that will be excluded on the visit log page, e.g. your own.
+                            (Note! All visits will still be stored in the database until deletion date.)
+                        </span>
+                    </div>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="ip" placeholder="127.0.0.1" onblur="removeRedIfVal(this.id)" onfocus="this.placeholder=''" /><p style="margin-bottom: 7px" />
+                    <i class="fa fa-plus-square"></i> <a href="#" class="add-ip" style="font-weight: bold" title="Add IP.">Add</a>
+                    <div class="ip-feedback"></div>
+                    <table style="margin-top: 5px; margin-bottom: 5px; width: 100%" id="ipTable">
+                        <thead>
+                            <tr>
+                                <th style="padding: 8px; padding-left: 15px" colspan="3">
+                                    <input type="checkbox" id="select-all-ips" onclick='multiSelect(this.getAttribute("id"), "input[name=\"ipRecord\"]")' />
+                                    <span style="padding-left: 20px; font-weight: bold">Ignored IP addresses</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="ipBody">
+                            @foreach (string item in Model.IPList)
+                            {
+                                <tr class="tr-row">
+                                    <td style="width: 10px; padding-left: 15px" class="url-and-ip-rows">
+                                        <input type="checkbox" name="ipRecord" />
+                                    </td>
+                                    <td class="url-and-ip-rows">
+                                        <input type="text" class="plaintext" value="@item" name="IPAddress" disabled />
+                                    </td>
+                                    <td style="text-align: right">
+                                        <a href="#" onclick="focusElement($(this).closest('tr').find('input.plaintext').attr('id'))" style="font-weight: bold; color: #000" title="Edit IP."><i class="fa fa-edit"></i></a>
+                                        &nbsp;
+                                        <a href="#" onclick="$(this).closest('tr').remove()" style="font-weight: bold; color: #000" title="Remove IP."><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <i class="fa fa-minus-square"></i> <a href="#" class="delete-row" style="font-weight: bold" title="Remove selected IP(s).">Remove</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <b><label asp-for="DaysBeforeDeletion"></label></b>
+                    <div class="tooltip">
+                        <i class="fas fa-info-circle" style="font-size: 16px"></i>
+                        <span class="tooltiptext">Set duration days for how long statistics are to be stored in the database (minimum is 1 day).</span>
+                    </div>
+                </div><p />
+                <div class="col-75">
+                    <input asp-for="DaysBeforeDeletion" value="@Model.DaysBeforeDeletion" id="daysBeforeDeletion" min="1" style="width: 150px" />
+                </div>
+            </div>
+            <input type="button" class="btn-a" value="Save changes" id="ipForm" />
+        </form>
+    </div>
+</div>

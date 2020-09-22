@@ -1,0 +1,50 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<VisitorStatistics.Models.VisitorStats>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+<h1><i class="fas fa-list"></i> Visit logs</h1>
+
+<div id="container">
+    <table>
+        <tr>
+            <th>Visit time <a asp-controller="Admin" asp-action="VisitLogs" asp-route-sortOrder="@TempData["VisitTime"]" title="Sort by visit time."><img src="~/imgs/up-and-down-arrows.png" class="img-up-down-arrow" /></a></th>
+            <th>IP address</th>
+            <th>Visit URL</th>
+            <th>Referer URL</th>
+            <th>Visited by admin</th>
+            <th></th>
+        </tr>
+        @foreach (var visit in Model)
+        {
+            <tr>
+                <td style="border-bottom: 1px solid #ddd">@visit.VisitTime</td>
+                <td class="td_border">
+                    @visit.IPAddress
+                </td>
+                <td class="td_border">
+                    <a href="@visit.VisitURL" title="@visit.VisitURL" target="_blank">
+                        @(visit.VisitURL.Length <= 100 ? @visit.VisitURL : visit.VisitURL.Substring(0, 100) + "...")
+                    </a>
+                </td>
+                <td class="td_border">
+                    <a href="@visit.RefererURL" title="@visit.RefererURL" target="_blank">
+                        @(visit.RefererURL.Length <= 100 ? @visit.RefererURL : visit.RefererURL.Substring(0, 100) + "...")
+                    </a>
+                </td>
+                <td class="td_border">
+                    <a href="mailto:@visit.AdminEmail" title="@visit.AdminEmail">@visit.AdminFirstname</a>
+                </td>
+                <td class="td_border" style="width: 80px">
+                    <a asp-action="VisitDetails" asp-controller="Admin" asp-route-id="@visit.VisitID" title="See more visit details.">
+                        Details
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <nav aria-label="Admin paging" class="pagination" style="text-align: center">
+        <vc:pager paging-list="@Model" />
+    </nav>
+
+</div>

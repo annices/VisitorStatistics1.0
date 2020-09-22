@@ -1,0 +1,30 @@
+﻿<div id="container">
+    <h1>
+        <i class="fas fa-sign-in-alt"></i> Admin login
+    </h1>
+
+    <p class="errormsg">@ViewBag.Error</p>
+
+    <div class="form">
+        <form method="post" asp-action="Login" asp-controller="Home">
+            <div class="row">
+                <div class="col-25">
+                    <b>Email:</b>
+                </div>
+                <div class="col-75">
+                    <input type="email" name="email" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <b>Password:</b>
+                </div>
+                <div class="col-75">
+                    <input type="password" name="password" />
+                </div>
+            </div>
+            <input type="submit" class="btn-a" value="Login" style="float: right" />
+        </form>
+    </div>
+
+</div>

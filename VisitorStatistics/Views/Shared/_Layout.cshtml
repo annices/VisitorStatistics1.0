@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<!--
+This script was fetched from https://annice.se and was created by Annice Strömberg, 2020.
+-->
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Visitor Statistics 1.0</title>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/tabview.css" />
+    <link rel="stylesheet" href="~/css/tooltip.css" />
+    <link rel="stylesheet" href="~/css/lib/fontawesome-all.css" />
+</head>
+<body>
+
+    <noscript>
+        <p class="errormsg">
+            Your browser has JavaScript disabled. Good luck with that.
+        </p>
+    </noscript>
+
+    <header>
+        <div class="topnav" id="myTopnav">
+            <a class='@if (Context.Request.Path == "/" || Context.Request.Path == "/Home") {<text>active</text>} else {<text>nav</text>}' asp-controller="Home" asp-action="Index">Visitor Statistics 1.0</a>
+
+            @if (TempData["UserID"] != null)
+            {
+                <a class='@if (Context.Request.Path == "/Admin/VisitLogs" || Context.Request.Path.ToString().Contains("/Admin/VisitDetails")) {<text>active</text>} else {<text>nav</text>}' asp-controller="Admin" asp-action="VisitLogs">Visit logs</a>
+
+                <a class='@if (Context.Request.Path == "/Admin/Settings") {<text>active</text>} else {<text>nav</text>}' asp-controller="Admin" asp-action="Settings">Settings</a>
+
+                <a class='@if (Context.Request.Path == "/Admin/Statistics") {<text>active</text>} else {<text>nav</text>}' asp-controller="Admin" asp-action="Statistics">Statistics</a>
+
+                <a class="nav" style="float: right" asp-controller="Admin" asp-action="Logout">Logout</a>
+            }
+            else
+            {
+                <a class="nav" asp-controller="Home" asp-action="Login">Login</a>
+            }
+
+            <a href="javascript:void(0);" class="icon" onclick="dropDown()">
+                <i class="fa fa-bars"></i>
+            </a>
+
+            @{ TempData.Keep("UserID"); }
+        </div>
+    </header>
+    <div>
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer id="footer">
+        <div class="container">
+            Visitor Statistics 1.0 - An ASP.NET Core application from <a href="https://annice.se" target="_blank">Annice.se</a>.
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="~/js/lib/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="~/js/lib/fontawesome-all.js"></script>
+    <script type="text/javascript" src="~/js/site.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

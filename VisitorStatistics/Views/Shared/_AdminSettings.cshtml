@@ -1,0 +1,53 @@
+﻿@model VisitorStatistics.Models.Config
+
+    <div class="panel" id="panel-one">
+        <h2><i class="fas fa-user"></i> Admin settings</h2>
+        <p />
+        <div class="successmsg" id="adminFeedbackBox">
+            <span id="adminFeedback"></span>
+        </div>
+        <div class="form" id="aForm">
+            <form method="post" asp-action="AdminSettings" asp-controller="Admin">
+                <input asp-for="AdminID" type="hidden" value="@Model.AdminID" id="adminID" />
+                <div class="row">
+                    <div class="col-25">
+                        <b><label asp-for="Firstname"></label></b>
+                    </div>
+                    <div class="col-75">
+                        <input asp-for="Firstname" value="@Model.Firstname" id="firstName" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <b><label asp-for="Lastname"></label></b>
+                    </div>
+                    <div class="col-75">
+                        <input asp-for="Lastname" value="@Model.Lastname" id="lastName" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <b><label asp-for="Email" value="@Model.Email"></label> <span class="red">*</span></b>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" asp-for="Email" value="@Model.Email" onblur="removeRedIfVal(this.id)" onfocus="this.placeholder=''" id="email" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <b><label asp-for="Password"></label></b>
+                        <div class="tooltip">
+                            <i class="fas fa-info-circle" style="font-size: 16px"></i>
+                            <span class="tooltiptext">
+                                Leave the password field empty to keep the current password.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-75">
+                        <input asp-for="Password" value="@Model.Password" id="password" />
+                    </div>
+                </div>
+                <input type="button" class="btn-a" value="Save changes" id="adminForm" />
+            </form>
+        </div>
+    </div>

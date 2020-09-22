@@ -1,0 +1,34 @@
+﻿@model VisitorStatistics.Models.VisitorStats
+
+<h1><i class="fas fa-list"></i> <a asp-controller="Admin" asp-action="VisitLogs">Visit logs</a> <i class="fa fa-angle-right" aria-hidden="true"></i> Visit details for IP "@Model.IPAddress"</h1>
+
+<div id="container">
+    <table style="border: 0 !important">
+        <tr>
+            <td style="width: 180px; border-top: 1px solid #cecece" class="td_bg_light"><b>Visit time:</b></td>
+            <td class="td_bg_dark">@Model.VisitTime</td>
+        </tr>
+        <tr>
+            <td class="td_bg_light"><b>Visit URL:</b></td>
+            <td class="td_bg_dark">@Model.VisitURL</td>
+        </tr>
+        <tr>
+            <td class="td_bg_light"><b>Referer URL:</b></td>
+            <td class="td_bg_dark">
+                @if (string.IsNullOrEmpty(Model.RefererURL)) { <em>N/A</em> } else { @Model.RefererURL }
+            </td>
+        </tr>
+        <tr>
+            <td class="td_bg_light"><b>Hostname:</b></td>
+            <td class="td_bg_dark">@Model.HostName</td>
+        </tr>
+        <tr>
+            <td style="width: 180px; border-bottom: 1px solid #cecece" class="td_bg_light"><b>Agent:</b></td>
+            <td class="td_bg_dark">@Model.Agent</td>
+        </tr>
+    </table>
+</div>
+
+<p>
+    <i class="fa fa-angle-left fa-lg"></i> <a asp-action="VisitLogs"><b>Go back</b></a>
+</p>
