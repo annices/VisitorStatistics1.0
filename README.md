@@ -129,7 +129,7 @@ As this script was created in Visual Studio Community with SQL Server, I will go
   * [Install Visual Studio Community](https://visualstudio.microsoft.com/vs/community/)
   
 ## 9.2 Create the database and its tables
-  1. Open the file "sql_visitorstatistics.sql", look up the code section below and change the highlighted values to suit your own settings. (Note! The default password is set to "admin", but can be changed after your first login):
+  1. Open the file "sql_visitorstatistics.sql", look up the code section below and change the commented values to suit your own settings. (Note! The default password is set to "admin", but can be changed after your first login):
 
 ```sql
 INSERT INTO VisitorStatistics.dbo.VS_Admins 
@@ -137,7 +137,7 @@ VALUES
   (
     'YourFirstName', -- Optional.
     'YourLastName', -- Optional.
-    'your@email.com', 
+    'your@email.com', -- Your email.
     -- Keep the hashed password below until your first login. Default password is set to
     -- "admin", but can be changed under the admin panel once you're logged in:
    'AQAAAAEAACcQAAAAEBehHmgEHZmjXlTBGlKSW9KVuxMIHp1f4r8sC502SFQkGGxiYeef6HFntNMCMdZ76w=='
