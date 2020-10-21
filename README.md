@@ -179,5 +179,7 @@ VALUES
 
   8. On your first login, use the password "**admin**" along with the user email you specified when you executed the SQL code (see section 9.2).
 
+---
+
 # 10 Contact details
 For general feedback related to this script, such as any discovered bugs etc., you can contact me via the following email address: [info@annice.se](mailto:info@annice.se)
